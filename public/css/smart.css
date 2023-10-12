@@ -1,0 +1,129 @@
+#PCMenu{
+	display:none;
+}
+
+#SmartNaviCover{
+	position:absolute;
+	left: 0;
+	bottom: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 4;
+}
+
+
+#SmartNavi{
+	color: #3f312b;
+	text-align: center;
+	left: 0;
+	bottom: 0;
+	padding-bottom: 5%;
+	position:absolute;
+	background-color: rgba(255,255,255, 0.8);
+	display:table-cell;
+	z-index:3;
+	border: 2px solid #4d4845;
+	border-radius: 6px;
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+}
+
+#SmartNavi h1 {
+	margin:0;
+	padding:0;
+	margin-bottom: 5%;
+	padding-left:10%;
+	background-color: #887f7a;
+	color:#fff;
+	font-size: 150%;
+	text-align: left;
+	border-top-right-radius: 4px;
+	-moz-border-top-right-radius: 4px;
+	-webkit-border-top-right-radius: 4px;
+	border-top-left-radius: 4px;
+	-moz-border-top-left-radius: 4px;
+	-webkit-border-top-left-radius: 4px;
+	background-image: url("/img/boxpoint.png");
+	background-repeat: no-repeat; 
+	background-position: left bottom;
+	background-size:contain;
+}
+
+#SmartMenu{
+	display:none;
+	top: 0;
+	left: 0;
+	position:absolute;
+	width: 100%;
+	padding-bottom: 5%;
+	background-color: rgba(255,255,255, 0.8);
+	color: #3f312b;
+	border: 2px solid #4d4845;
+	border-radius: 6px;
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+}
+
+#SmartMenu h1 {
+	margin:0;
+	padding:0;
+	margin-bottom: 5%;
+	padding-left:10%;
+	background-color:#887f7a;
+	color:#fff;
+	font-size: 150%;
+	text-align: left;
+	border-top-right-radius: 4px;
+	-moz-border-top-right-radius: 4px;
+	-webkit-border-top-right-radius: 4px;
+	border-top-left-radius: 4px;
+	-moz-border-top-left-radius: 4px;
+	-webkit-border-top-left-radius: 4px;
+	background-image: url("/img/boxpoint.png");
+	background-repeat: no-repeat; 
+	background-position: left bottom;
+	background-size:contain;
+}
+
+#container{
+	width: 100%;
+}
+
+#button{
+	border: 2px solid #4d4845;
+	font-size: 120%;
+}
+
+#box {
+	font-size: 100%;
+	width: 92%;
+	margin: 2%;
+	padding: 2%;
+	margin-bottom: 10%;
+}
+
+#box h1 {
+	font-size: 120%;
+	padding-left:10%;
+}
+
+#nameform{
+	color: #3f312b;
+	text-align: left;
+	width: 92%;
+	margin: 2%;
+	margin-bottom: 2%;
+	padding-left: 2%;
+	padding-right: 2%;
+	font-size: 125%;
+	font-weight: bold;
+}
+
+input[type="text"]{
+	width:92%;
+	font-size:20px;
+}
+
+textarea {
+	rows: 3;
+}

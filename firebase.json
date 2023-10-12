@@ -1,0 +1,62 @@
+{
+  "functions": [
+    {
+      "source": "functions",
+      "codebase": "default",
+      "ignore": [
+        "node_modules",
+        ".git",
+        "firebase-debug.log",
+        "firebase-debug.*.log"
+      ],
+      "predeploy": [
+        "npm --prefix \"$RESOURCE_DIR\" run build"
+      ]
+    }
+  ],
+  "hosting": {
+    "public": "public",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "/redirect",
+        "function": "redirect"
+      }
+    ]
+  },
+  "emulators": {
+    "hosting": {
+      "enabled": true,
+      "port": 3030,
+      "host": "0.0.0.0"
+    },
+    "functions": {
+      "enabled": true,
+      "port": 5001,
+      "host": "0.0.0.0"
+    },
+    "ui": {
+      "enabled": true,
+      "host": "0.0.0.0",
+      "port": 3001
+    },
+    "hub": {
+      "enabled": true,
+      "host": "0.0.0.0"
+    },
+    "logging": {
+      "enabled": true,
+      "host": "0.0.0.0"
+    },
+    "eventarc": {
+      "enabled": true,
+      "host": "0.0.0.0",
+      "port": 9299
+    },
+    "singleProjectMode": true
+  }
+}

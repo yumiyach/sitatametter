@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <link rel="shortcut icon" href="favicon.ico">
+  <Meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport"
+    content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+  <link rel="icon" href="favicon.ico">
+  <meta property="og:title" content="したためったー" />
+  <meta property="og:type" content="article" />
+  <meta property="og:description" content="パソコンのマウスやスマートフォンのタッチでだれでも簡単に書をしたためることができるサービスです。" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="したためったー" />
+  <meta name="twitter:description" content="パソコンのマウスやスマートフォンのタッチでだれでも簡単に書をしたためることができるサービスです。" />
+  <Meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  <meta property="twitter:image" content="/img/promo2018.png" />
+  <link rel="stylesheet" type="text/css" href="css/sitatametter.css">
+  <meta property="og:image" content="http://www.granfairs.com/assets/img/fb-ogp-01.png">
+
+  <title>したためったー</title>
+  <link media="only screen and (max-device-width:480px)" href="css/smart.css" type="text/css" rel="stylesheet" />
+  <link media="screen and (min-device-width:481px)" href="css/pc.css" type="text/css" rel="stylesheet" />
+  <!--[if IE]>
+<link href="css/pc.css" type="text/css" rel="stylesheet" />
+<![endif]-->
+
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  <script type="text/javascript" src="/js/PageLayout.js"></script>
+  <meta name="keywords" content="したためったー,書道,習字,スマートフォン,Web">
+  <script>
+    (function (i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+        (i[r].q = i[r].q || []).push(arguments);
+      }, i[r].l = 1 * new Date(); a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m);
+    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-71859610-1', 'auto');
+    ga('send', 'pageview');
+
+  </script>
+</head>
+
+<body>
+  <div class="alistcloud-container-7082">
+    <script src="https://cdn.alistcloud.com/adsv/serving.js" onload="__alist_adsv.init({sid:7082,t:'write'})"></script>
+  </div>
+  <div id="topimg"><img id="image" src="/img/top.png"></div>
+  <div id="container">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- 今日のツイライフ -->
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6887873067583688" data-ad-slot="7591203851"
+      data-ad-format="auto"></ins>
+    <script>
+      (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
+
+  <div id="container">
+    <div id="box" style="text-align: center;">
+      <h1>書をしたためました。</h1>
+      <img id="sho" src="" style="max-width: 100%; width: auto;">
+      <a id="tweet" href="" target="_blank">
+        <div id="button">Twitterに投稿する</div>
+      </a>
+      <a href="./">
+        <div id="button" style="border: 2px solid #4d4845;">トップページに戻る</div>
+      </a>
+      <br>画像は１週間後に削除されます。とっておきたい人はローカルに画像を保存してください。<br>
+    </div>
+  </div>
+  <nav id="footer">
+    <div class="logo"><a href="http://yumiya.utabami.com/"><b>Yumiya</b></a></div>
+  </nav>
+  <script>
+    const searchParams = new URLSearchParams(window.location.search);
+    const id = searchParams.get('id');
+    $(function () {
+      // 画像表示
+      var img = new Image();
+      img.src = `https://firebasestorage.googleapis.com/v0/b/sitatametter.appspot.com/o/image%2F${id}?alt=media`;
+      img.onload = function () {
+        $("#sho").attr("src", img.src);
+      };
+
+      //ツイートボタンのリンクを作る
+      var url = `https://sitatametter.utabami.com/redirect?id=${id}`;
+      var tweet = document.getElementById("tweet");
+      tweet.href = "https://twitter.com/share?url=" + url + "&text=したためったーで書をしたためました。&hashtags=したためったー";
+    });
+  </script>
+</body>
+
+</html>

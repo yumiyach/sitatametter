@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <link rel="shortcut icon" href="favicon.ico">
+  <Meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport"
+    content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+  <title>したためったー</title>
+  <link rel="icon" href="favicon.ico">
+  <link rel="stylesheet" type="text/css" href="css/sitatametter.css">
+  <link media="only screen and (max-device-width:480px)" href="css/smart.css" type="text/css" rel="stylesheet" />
+  <link media="screen and (min-device-width:481px)" href="css/pc.css" type="text/css" rel="stylesheet" />
+  <!--[if IE]>
+<link href="css/pc.css" type="text/css" rel="stylesheet" />
+<![endif]-->
+
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  <script type="text/javascript" src="/js/DrawCanvas.js" charset="UTF-8"></script>
+  <script type="text/javascript" src="/js/PageLayout.js" charset="UTF-8"></script>
+  <script type="text/javascript" src="/js/WritePage.js" charset="UTF-8"></script>
+  <script>
+    (function (i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+        (i[r].q = i[r].q || []).push(arguments);
+      }, i[r].l = 1 * new Date(); a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m);
+    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-71859610-1', 'auto');
+    ga('send', 'pageview');
+
+  </script>
+</head>
+
+<body>
+  <div id="top">
+    <div id="topimg"><img id="image" src="/img/top.png"></div>
+  </div>
+  <canvas id="Canvas"></canvas>
+  <div id="Bunchin"><img src="/img/bunchin.png"></div>
+  <!--スマートフォン用メニュー-->
+  <div id="SmartNavi">
+    <h1>つかいかた</h1>
+    <table>
+      <img src="/img/navi1.png" style="width: 44%; margin-left: 1%; margin-right: 1%; display: inline;">
+      <img src="/img/navi2.png" style="width: 44%; margin-left: 1%; margin-right: 1%; display: inline;"><br>
+      文鎮をタップするとメニューが開閉します。
+    </table>
+  </div>
+  <div id="SmartMenu">
+    <h1>メニュー</h1>
+    <div id="button" class="Complete">できあがり</div>
+    <div id="button" class="NewPaper">はじめから</div>
+    <div id="button" class="TopPage">トップページ</div>
+  </div>
+  <!--PC用メニュー-->
+  <div id="container">
+    <div id="PCMenu">
+      <div id="button" class="Complete" style="margin-top: 2%;">できあがり</div>
+      <div id="button" class="NewPaper">はじめから</div>
+      <div id="button" class="TopPage">トップページ</div>
+    </div>
+  </div>
+  <div id="SmartNaviCover"></div>
+  <script type="text/javascript">
+    $(function () {
+      var n = DataReceive();
+      n = n.replace(/name=/g, "");
+      $('Canvas').myPaint(n);
+    });
+  </script>
+
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js";
+    import { getFunctions, httpsCallable, connectFunctionsEmulator } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-functions.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyDATejLK0V57iqVbu0aCvjytoNBJKu88WY",
+      authDomain: "sitatametter.firebaseapp.com",
+      projectId: "sitatametter",
+      storageBucket: "sitatametter.appspot.com",
+      messagingSenderId: "538962444678",
+      appId: "1:538962444678:web:d7c2db6c96743b51feac07"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const completeButtons = Array.from(document.getElementsByClassName("Complete"));
+    const functions = getFunctions(app);
+    if (location.hostname === "localhost") {
+      connectFunctionsEmulator(functions, 'localhost', 5001);
+    }
+
+    const saveImage = httpsCallable(functions, 'saveImage');
+    completeButtons.forEach((button) => {
+      button.addEventListener('click', async () => {
+        const cvs = document.getElementById("Canvas");
+        const png = cvs.toDataURL('image/png');
+        const res = await saveImage({ image: png, thumb: getThumb(cvs) });
+        location.href = `/complete.html?id=${res.data.id}`;
+      });
+    });
+
+    // サムネ用の画像を取得
+    const thumbTop = new Image();
+    thumbTop.src = "/img/thumb_top.png";
+    const thumbBottom = new Image();
+    thumbBottom.src = "/img/thumb_bottom.png";
+
+    function getThumb(cvs) {
+      const thumbWidth = 998.5;
+      const thumbHeight = 535;
+      const hanshiWidth = 336;
+      const hanshiHeight = 500;
+      const thumb = document.createElement("canvas");
+      thumb.width = thumbWidth;
+      thumb.height = thumbHeight;
+      const ctx = thumb.getContext("2d");
+      ctx.drawImage(thumbBottom, 0, 0, thumbBottom.width, thumbBottom.height, 0, 0, thumbWidth, thumbHeight);
+
+      // 半紙の中に収まるサイズに縮小
+      const scale = Math.min(hanshiWidth / cvs.width, hanshiHeight / cvs.height);
+      const width = cvs.width * scale;
+      const height = cvs.height * scale;
+      const x = (hanshiWidth - width) / 2 + 190;
+      const y = 20;
+      ctx.drawImage(cvs, 0, 0, cvs.width, cvs.height, x, y, width, height);
+      ctx.drawImage(thumbTop, 0, 0, thumbTop.width, thumbTop.height, 0, 0, thumbWidth, thumbHeight);
+      return thumb.toDataURL('image/png');
+    }
+  </script>
+  <nav id="footer">
+    <div class="logo"><a href="http://yumiya.utabami.com/"><b>Yumiya</b></a></div>
+  </nav>
+
+</body>
+
+</html>
